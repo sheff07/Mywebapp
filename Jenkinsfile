@@ -23,12 +23,20 @@ pipeline {
       jacoco()
       }
     }
+    // stage ('DEV Tomcat Deploy') {
+    //   steps {
+    //     echo "deploying to DEV Env "
+    //     deploy adapters: [tomcat9(credentialsId: '17570684-9bc3-4f63-b0c4-b73b74703882', url: 'http://ec2-107-22-151-68.compute-1.amazonaws.com:8080/', path: '/MyWebApp')], war: '**/*.war'
+    //   }
+    // }
+    
     stage ('DEV Tomcat Deploy') {
       steps {
-        echo "deploying to DEV Env "
-        deploy adapters: [tomcat9(credentialsId: '17570684-9bc3-4f63-b0c4-b73b74703882', url: 'http://ec2-107-22-151-68.compute-1.amazonaws.com:8080/', path: '/MyWebApp')], war: '**/*.war'
+      echo "deploying to DEV Env "
+      deploy adapters: [tomcat9(credentialsId: '17570684-9bc3-4f63-b0c4-b73b74703882', path: '', url: 'http://ec2-107-22-151-68.compute-1.amazonaws.com:8080/')], contextPath: null, war: '**/*.war'
       }
     }
+    
     // stage ('Slack Notification') {
     //   steps {
     //     echo "deployed to DEV Env successfully"
