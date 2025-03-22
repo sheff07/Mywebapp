@@ -18,9 +18,9 @@ pipeline {
     //     }
     //   }
     // }
-    stage ('JaCoCo') {
+     stage ('JaCoCo') {
       steps {
-        sh 'mvn jacoco:prepare-agent test jacoco:report'
+      jacoco()
       }
     }
     stage ('DEV Tomcat Deploy') {
